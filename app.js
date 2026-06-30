@@ -71,6 +71,8 @@
 
     if (onShow[id]) onShow[id](target);
 
+    if (window.GW) GW.track('ScreenView', { screen: id, step: stepIdx >= 0 ? stepIdx + 1 : null });
+
     target.scrollTop = 0;
     const body = target.querySelector('.screen__body');
     if (body) body.scrollTop = 0;
@@ -134,6 +136,7 @@
     if (!q) return;
 
     const screenEl = opt.closest('.screen');
+    if (window.GW) GW.track('Answer', { question: q, value: v });
     if (opt.closest('[data-multi]')) {
       const set = new Set(state[q] || []);
       set.has(v) ? set.delete(v) : set.add(v);
@@ -344,13 +347,13 @@
   //  CHECKOUT — Superwall Web Checkout handoff (STUB)
   // ============================================================
   function startCheckout() {
-    // TODO(Superwall): replace this stub with the real Superwall Web Checkout call.
-    //   1. Open Superwall web checkout for the selected plan (state.plan)
-    //   2. On success, receive the activation/redemption deep link
-    //   3. Send the user to the App Store, then the link grants the entitlement
-    // We pass the full quiz `state` along as checkout context.
-    console.log('[GirlWalk] Superwall checkout — plan:', state.plan, 'state:', state);
-    showToast('🔗 Superwall Web Checkout opens here\nPlan: ' + state.plan + ' · (integration pending)');
+    // Superwall Web Checkout: GW.checkout fires InitiateCheckout (Mixpanel + pixels),
+    // then redirects to the configured placement URL with attribution + quiz data.
+    if (window.GW && GW.checkout(state.plan, state)) return; // redirected
+    // Not configured yet → stub so the flow is still testable.
+    console.log('[GirlWalk] Superwall checkout (no URL set) — plan:', state.plan, 'state:', state);
+    showToast('🔗 Superwall Web Checkout opens here\nPlan: ' + state.plan +
+              '\n(set superwall.checkoutUrl in config.js)');
   }
 
   function showToast(msg) {
@@ -369,6 +372,7 @@
 
   // ---- Boot ----
   show('intro');
+  if (window.GW) GW.track('FunnelStart', {});
 
   window.GWFunnel = { state, show, next, back, startCheckout };
 })();

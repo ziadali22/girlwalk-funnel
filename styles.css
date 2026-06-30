@@ -319,6 +319,56 @@ body {
   background: var(--pink); color: #fff;
 }
 
+/* Body-type grid (Screen 5) — portrait image single-select */
+.body-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+}
+.body-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .12s var(--ease), border-color .18s, box-shadow .2s;
+}
+.body-card:active { transform: scale(.98); }
+.body-card.is-selected {
+  border-color: var(--pink);
+  box-shadow: 0 6px 20px rgba(255, 77, 141, 0.28);
+}
+.body-card__photo {
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--bg);
+}
+.body-card__photo img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
+.body-card__label {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 12px 8px;
+  font-weight: 700;
+  font-size: 15px;
+  transition: background .18s var(--ease), color .18s;
+}
+.body-card .chev { color: var(--pink); font-weight: 800; font-size: 18px; line-height: 1; }
+.body-card.is-selected .body-card__label {
+  background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+  color: #fff;
+}
+.body-card.is-selected .chev { color: #fff; }
+
 /* Quiz screen header */
 .screen--quiz .screen__body { overflow-y: auto; }
 .qhead { padding: 6px 0 18px; }
@@ -362,7 +412,7 @@ body {
 }
 .age-card__photo {
   display: block;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 7 / 6;
   overflow: hidden;
   background: var(--bg);
 }

@@ -95,14 +95,13 @@
       </section>
 
       <!-- ===================== SCREEN 3 — MAIN GOAL ===================== -->
-      <section class="screen screen--quiz screen--withmodel" data-screen="goal" data-step>
-        <img class="screen-model" src="assets/img/goal-model.png" alt="" aria-hidden="true" />
+      <section class="screen screen--quiz" data-screen="goal" data-step>
         <div class="screen__body">
           <header class="qhead">
             <h2 class="qhead__title">What's your main goal?</h2>
             <p class="qhead__sub">We'll shape your walking plan around it.</p>
           </header>
-          <div class="opts opts--narrow">
+          <div class="opts">
             <button class="option" data-question="goal" data-value="lose_weight">
               <span class="option__icon">🔥</span><span class="option__label">Lose weight</span><span class="option__ind"></span>
             </button>
@@ -116,7 +115,7 @@
               <span class="option__icon">🚶‍♀️</span><span class="option__label">Stay active</span><span class="option__ind"></span>
             </button>
             <button class="option" data-question="goal" data-value="heart">
-              <span class="option__icon">❤️</span><span class="option__label">Heart health</span><span class="option__ind"></span>
+              <span class="option__icon">❤️</span><span class="option__label">Improve heart health</span><span class="option__ind"></span>
             </button>
           </div>
         </div>
@@ -168,18 +167,22 @@
             <h2 class="qhead__title">How would you describe your body now?</h2>
             <p class="qhead__sub">No judgment — this just helps us personalize.</p>
           </header>
-          <div class="opts">
-            <button class="option" data-question="bodytype" data-value="slim">
-              <span class="option__label">Slim</span><span class="option__ind"></span>
+          <div class="body-grid">
+            <button class="body-card" data-question="bodytype" data-value="slim">
+              <span class="body-card__photo"><img src="assets/img/body/body-slim.jpg" alt="" loading="lazy" /></span>
+              <span class="body-card__label">Slim <span class="chev" aria-hidden="true">›</span></span>
             </button>
-            <button class="option" data-question="bodytype" data-value="average">
-              <span class="option__label">Average</span><span class="option__ind"></span>
+            <button class="body-card" data-question="bodytype" data-value="average">
+              <span class="body-card__photo"><img src="assets/img/body/body-average.jpg" alt="" loading="lazy" /></span>
+              <span class="body-card__label">Average <span class="chev" aria-hidden="true">›</span></span>
             </button>
-            <button class="option" data-question="bodytype" data-value="curvy">
-              <span class="option__label">Curvy</span><span class="option__ind"></span>
+            <button class="body-card" data-question="bodytype" data-value="curvy">
+              <span class="body-card__photo"><img src="assets/img/body/body-curvy.jpg" alt="" loading="lazy" /></span>
+              <span class="body-card__label">Curvy <span class="chev" aria-hidden="true">›</span></span>
             </button>
-            <button class="option" data-question="bodytype" data-value="plus">
-              <span class="option__label">Plus-size</span><span class="option__ind"></span>
+            <button class="body-card" data-question="bodytype" data-value="plus">
+              <span class="body-card__photo"><img src="assets/img/body/body-plus.jpg" alt="" loading="lazy" /></span>
+              <span class="body-card__label">Plus-size <span class="chev" aria-hidden="true">›</span></span>
             </button>
           </div>
         </div>
@@ -663,6 +666,8 @@
     </main>
   </div>
 
+  <script src="config.js"></script>
+  <script src="analytics.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
