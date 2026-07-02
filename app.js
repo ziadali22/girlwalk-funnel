@@ -63,10 +63,18 @@
     restoreSelections(target);
     refreshButtons(target);
 
-    // Hero video: play when shown, pause otherwise
+    // Hero video: play when shown, pause otherwise.
+    // iOS needs muted+playsInline set as properties; autoplay can still be
+    // blocked (e.g. Low Power Mode) — the poster shows meanwhile, and a
+    // one-time tap resumes playback.
     if (heroVideo) {
-      if (id === 'intro') heroVideo.play().catch(() => {});
-      else heroVideo.pause();
+      if (id === 'intro') {
+        heroVideo.muted = true;
+        heroVideo.playsInline = true;
+        heroVideo.play().catch(() => {});
+      } else {
+        heroVideo.pause();
+      }
     }
 
     if (onShow[id]) onShow[id](target);
@@ -232,35 +240,57 @@
   })();
 
   // ============================================================
-  //  LOADER screen — animate progress then go to results
+  //  "We know how" screen — tailor the lead line to the goal
   // ============================================================
-  const LOADER_MSGS = [
-    'Analyzing your answers',
-    'Calculating your step goals',
-    'Designing your walking plan',
-    'Adding coaching & rewards',
-    'Almost ready…'
-  ];
-  onShow.loader = function () {
-    const bar = document.getElementById('loaderBar');
-    const pctEl = document.getElementById('loaderPct');
-    const msgEl = document.getElementById('loaderMsg');
-    const CIRC = 327;
-    let pct = 0;
-    const duration = 3000, tick = 30;
-    const inc = 100 / (duration / tick);
+  onShow.goalplan = function () {
+    var lead = document.getElementById('gpLead');
+    if (!lead) return;
+    lead.innerHTML = state.goal === 'maintain'
+      ? 'Walking is perfect for <b>staying fit, toned and energized</b> — gentle on your body and easy to stick with.'
+      : 'Walking is one of the best ways to <b>burn fat and slim down</b> — gentle on your body and easy to stick with.';
+  };
 
-    const timer = setInterval(() => {
-      pct = Math.min(pct + inc, 100);
-      const p = Math.round(pct);
-      pctEl.textContent = p + '%';
-      bar.style.strokeDashoffset = CIRC * (1 - pct / 100);
-      msgEl.textContent = LOADER_MSGS[Math.min(LOADER_MSGS.length - 1, Math.floor(pct / 20))];
-      if (pct >= 100) {
-        clearInterval(timer);
-        setTimeout(() => { if (current === 'loader') show('results'); }, 450);
+  // ============================================================
+  //  LOADER screen — fill each category bar in sequence, then results
+  // ============================================================
+  onShow.loader = function () {
+    const rows = Array.from(document.querySelectorAll('#calcList .calc-row'));
+    if (!rows.length) return;
+
+    // reset (in case the screen is revisited)
+    rows.forEach(function (r) {
+      r.querySelector('.calc-bar__fill').style.width = '0%';
+      const p = r.querySelector('.calc-row__pct');
+      p.textContent = '0%';
+      p.classList.remove('is-done');
+    });
+
+    const ROW_MS = 850, TICK = 25;
+    let i = 0;
+
+    function runRow() {
+      if (i >= rows.length) {
+        setTimeout(function () { if (current === 'loader') show('results'); }, 450);
+        return;
       }
-    }, tick);
+      const fill = rows[i].querySelector('.calc-bar__fill');
+      const pctEl = rows[i].querySelector('.calc-row__pct');
+      let pct = 0;
+      const inc = 100 / (ROW_MS / TICK);
+      const timer = setInterval(function () {
+        pct = Math.min(pct + inc, 100);
+        fill.style.width = pct + '%';
+        pctEl.textContent = Math.round(pct) + '%';
+        if (pct >= 100) {
+          clearInterval(timer);
+          pctEl.textContent = '✓';
+          pctEl.classList.add('is-done');
+          i++;
+          setTimeout(runRow, 220);
+        }
+      }, TICK);
+    }
+    runRow();
   };
 
   // ============================================================
@@ -373,6 +403,20 @@
   // ---- Boot ----
   show('intro');
   if (window.GW) GW.track('FunnelStart', {});
+
+  // iOS autoplay fallback: resume the hero video on the first user interaction
+  // if the browser blocked autoplay (Low Power Mode, data saver, etc.).
+  if (heroVideo) {
+    var resumeHero = function () {
+      if (current === 'intro' && heroVideo.paused) {
+        heroVideo.muted = true;
+        heroVideo.play().catch(function () {});
+      }
+    };
+    ['touchstart', 'pointerdown', 'click'].forEach(function (ev) {
+      document.addEventListener(ev, resumeHero, { once: true, passive: true });
+    });
+  }
 
   window.GWFunnel = { state, show, next, back, startCheckout };
 })();

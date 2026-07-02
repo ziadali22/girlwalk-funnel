@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1" />
   <meta name="theme-color" content="#FFF5F8" />
   <title>Girl Walk — Your Personalized Walking Plan</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=4" />
 </head>
 <body>
   <div class="app">
@@ -28,7 +28,8 @@
       <!-- ===================== SCREEN 1 — VIDEO HERO ===================== -->
       <section class="screen screen--hero is-active" data-screen="intro" data-no-topbar>
         <video class="hero__video" id="heroVideo"
-               autoplay muted loop playsinline preload="auto">
+               autoplay muted loop playsinline webkit-playsinline="true"
+               preload="auto" poster="assets/img/hero-poster.jpg">
           <source src="assets/video/app-preview.mp4" type="video/mp4" />
         </video>
         <div class="hero__scrim"></div>
@@ -103,21 +104,29 @@
           </header>
           <div class="opts">
             <button class="option" data-question="goal" data-value="lose_weight">
-              <span class="option__icon">🔥</span><span class="option__label">Lose weight</span><span class="option__ind"></span>
+              <span class="option__icon">⚖️</span><span class="option__label">Lose weight</span><span class="option__ind"></span>
             </button>
-            <button class="option" data-question="goal" data-value="tone">
-              <span class="option__icon">💪</span><span class="option__label">Tone &amp; sculpt</span><span class="option__ind"></span>
-            </button>
-            <button class="option" data-question="goal" data-value="energy">
-              <span class="option__icon">⚡️</span><span class="option__label">Boost energy</span><span class="option__ind"></span>
-            </button>
-            <button class="option" data-question="goal" data-value="active">
-              <span class="option__icon">🚶‍♀️</span><span class="option__label">Stay active</span><span class="option__ind"></span>
-            </button>
-            <button class="option" data-question="goal" data-value="heart">
-              <span class="option__icon">❤️</span><span class="option__label">Improve heart health</span><span class="option__ind"></span>
+            <button class="option" data-question="goal" data-value="maintain">
+              <span class="option__icon">✨</span><span class="option__label">Maintain weight and get fit</span><span class="option__ind"></span>
             </button>
           </div>
+        </div>
+      </section>
+
+      <!-- ============ SCREEN 3.5 — "WE KNOW HOW" (app preview) ============ -->
+      <section class="screen screen--quiz" data-screen="goalplan">
+        <div class="screen__body gp">
+          <h2 class="gp__title">We know how to make that happen!</h2>
+          <p class="gp__lead" id="gpLead">Walking is one of the best ways to
+            <b>burn fat and slim down</b> — gentle on your body and easy to stick with.</p>
+          <p class="gp__lead">We'll create a <b>personalized plan</b> that matches your
+            fitness level and goal.</p>
+          <div class="gp__mock">
+            <img src="assets/img/app-workouts.png" alt="Girl Walk workouts in the app" />
+          </div>
+        </div>
+        <div class="screen__foot">
+          <button class="btn btn--primary btn--block" data-next>Continue</button>
         </div>
       </section>
 
@@ -128,30 +137,30 @@
             <h2 class="qhead__title">Where do you want to see results?</h2>
             <p class="qhead__sub">Choose all that apply — we'll focus your walks here.</p>
           </header>
-          <div class="area-grid" data-multi>
-            <button class="area-card" data-question="areas" data-value="full">
-              <span class="area-card__photo"><img src="assets/img/areas/area-full.png" alt="" loading="lazy" /></span>
-              <span class="area-card__label">Full body</span>
+          <div class="area-list" data-multi>
+            <button class="area-row" data-question="areas" data-value="full">
+              <span class="area-row__label">Full body</span>
+              <span class="area-row__photo"><img src="assets/img/areas/area-full.png" alt="" loading="lazy" /></span>
             </button>
-            <button class="area-card" data-question="areas" data-value="abs">
-              <span class="area-card__photo"><img src="assets/img/areas/area-abs.png" alt="" loading="lazy" /></span>
-              <span class="area-card__label">Abs</span>
+            <button class="area-row" data-question="areas" data-value="abs">
+              <span class="area-row__label">Belly</span>
+              <span class="area-row__photo"><img src="assets/img/areas/area-abs.png" alt="" loading="lazy" /></span>
             </button>
-            <button class="area-card" data-question="areas" data-value="thighs">
-              <span class="area-card__photo"><img src="assets/img/areas/area-thighs.png" alt="" loading="lazy" /></span>
-              <span class="area-card__label">Thighs</span>
+            <button class="area-row" data-question="areas" data-value="thighs">
+              <span class="area-row__label">Thighs</span>
+              <span class="area-row__photo"><img src="assets/img/areas/area-thighs.png" alt="" loading="lazy" /></span>
             </button>
-            <button class="area-card" data-question="areas" data-value="glutes">
-              <span class="area-card__photo"><img src="assets/img/areas/area-glutes.png" alt="" loading="lazy" /></span>
-              <span class="area-card__label">Glutes</span>
+            <button class="area-row" data-question="areas" data-value="glutes">
+              <span class="area-row__label">Butt</span>
+              <span class="area-row__photo"><img src="assets/img/areas/area-glutes.png" alt="" loading="lazy" /></span>
             </button>
-            <button class="area-card" data-question="areas" data-value="legs">
-              <span class="area-card__photo"><img src="assets/img/areas/area-legs.png" alt="" loading="lazy" /></span>
-              <span class="area-card__label">Legs</span>
+            <button class="area-row" data-question="areas" data-value="legs">
+              <span class="area-row__label">Legs</span>
+              <span class="area-row__photo"><img src="assets/img/areas/area-legs.png" alt="" loading="lazy" /></span>
             </button>
-            <button class="area-card" data-question="areas" data-value="arms">
-              <span class="area-card__photo"><img src="assets/img/areas/area-arms.png" alt="" loading="lazy" /></span>
-              <span class="area-card__label">Arms</span>
+            <button class="area-row" data-question="areas" data-value="arms">
+              <span class="area-row__label">Arms</span>
+              <span class="area-row__photo"><img src="assets/img/areas/area-arms.png" alt="" loading="lazy" /></span>
             </button>
           </div>
         </div>
@@ -212,6 +221,22 @@
         </div>
       </section>
 
+      <!-- ============ SCREEN 6.5 — "10-20 MIN A DAY" (app preview) ============ -->
+      <section class="screen screen--quiz" data-screen="minutes">
+        <div class="screen__body gpc">
+          <h2 class="gp__title">Just 10–20 min a day for major results</h2>
+          <p class="gp__lead">Fitness doesn't have to be boring or exhausting.</p>
+          <p class="gp__lead">Walking with Girl Walk is an easy, fun and affordable way to
+            lose weight and feel amazing.</p>
+          <div class="gpc__mock">
+            <img src="assets/img/app-minutes.png" alt="A Girl Walk workout and live GPS tracking" />
+          </div>
+        </div>
+        <div class="screen__foot">
+          <button class="btn btn--primary btn--block" data-next>Continue</button>
+        </div>
+      </section>
+
       <!-- ===================== SCREEN 7 — ACTIVITY LEVEL ===================== -->
       <section class="screen screen--quiz" data-screen="activity" data-step>
         <div class="screen__body">
@@ -233,6 +258,33 @@
               <span class="option__icon">⚡️</span><span class="option__label">Very active</span><span class="option__sub">Exercise most days</span><span class="option__ind"></span>
             </button>
           </div>
+        </div>
+      </section>
+
+      <!-- ============ SCREEN 7.5 — SENSITIVITIES (image multi) ============ -->
+      <section class="screen screen--quiz" data-screen="pain" data-step>
+        <div class="screen__body">
+          <header class="qhead">
+            <h2 class="qhead__title">Do you struggle with any of the following?</h2>
+            <p class="qhead__sub">Choose all that apply — we'll keep your walks joint-friendly.</p>
+          </header>
+          <div class="pain-grid" data-multi>
+            <button class="pain-card" data-question="pain" data-value="back">
+              <span class="pain-card__photo"><img src="assets/img/pain/pain-back.png" alt="" loading="lazy" /></span>
+              <span class="pain-card__foot"><span class="pain-card__label">Sensitive back</span><span class="pain-card__box"></span></span>
+            </button>
+            <button class="pain-card" data-question="pain" data-value="knees">
+              <span class="pain-card__photo"><img src="assets/img/pain/pain-knees.png" alt="" loading="lazy" /></span>
+              <span class="pain-card__foot"><span class="pain-card__label">Sensitive knees</span><span class="pain-card__box"></span></span>
+            </button>
+            <button class="pain-card" data-question="pain" data-value="none">
+              <span class="pain-card__photo"><img src="assets/img/pain/pain-none.png" alt="" loading="lazy" /></span>
+              <span class="pain-card__foot"><span class="pain-card__label">None of the above</span><span class="pain-card__box"></span></span>
+            </button>
+          </div>
+        </div>
+        <div class="screen__foot">
+          <button class="btn btn--primary btn--block" data-next data-requires="pain" disabled>Continue</button>
         </div>
       </section>
 
@@ -287,13 +339,40 @@
       <!-- ============ SCREEN 9.5 — SOCIAL PROOF INTERSTITIAL ============ -->
       <section class="screen screen--center" data-screen="proof">
         <div class="screen__body interstitial">
-          <div class="interstitial__emoji">👭</div>
+          <img class="interstitial__ba" src="assets/img/prepaywall/before-after.jpg" alt="Before and after transformation" />
           <h2 class="interstitial__stat">1,000,000+</h2>
           <p class="interstitial__lead">women are walking their way to their goals with Girl Walk.</p>
-          <div class="quote">
-            <span class="stars" aria-hidden="true">★★★★★</span>
-            <p>“I never thought <em>just walking</em> could change my body. Down 6&nbsp;kg in 8&nbsp;weeks and I actually look forward to it.”</p>
-            <span class="quote__by">— Sarah, 34</span>
+          <div class="reviews" id="proofReviews">
+            <div class="rev">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <p class="rev__q">“I never thought just walking could change my body”</p>
+              <p class="rev__b">Down 6&nbsp;kg in 8&nbsp;weeks and I actually look forward to it.</p>
+              <span class="rev__by">— Sarah, 34</span>
+            </div>
+            <div class="rev">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <p class="rev__q">“I finally found my thing”</p>
+              <p class="rev__b">I used to hate exercise. Now my walks feel like therapy — but free.</p>
+              <span class="rev__by">— Emily, 24</span>
+            </div>
+            <div class="rev">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <p class="rev__q">“Changed my whole vibe”</p>
+              <p class="rev__b">I'm calmer, I sleep better, and honestly I just feel hotter. 10/10.</p>
+              <span class="rev__by">— Jess, 27</span>
+            </div>
+            <div class="rev">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <p class="rev__q">“Easiest plan I've stuck to”</p>
+              <p class="rev__b">Down two dress sizes and it never feels like a workout. 🩷</p>
+              <span class="rev__by">— Mia, 41</span>
+            </div>
+            <div class="rev">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <p class="rev__q">“My friends are obsessed”</p>
+              <p class="rev__b">We do girlwalks every Sunday now. It's our thing.</p>
+              <span class="rev__by">— Ava, 23</span>
+            </div>
           </div>
         </div>
         <div class="screen__foot">
@@ -352,49 +431,6 @@
               <span class="option__label">6–7 days</span><span class="option__sub">All in</span><span class="option__ind"></span>
             </button>
           </div>
-        </div>
-      </section>
-
-      <!-- ============ SCREEN 11.5 — WHY WALKING WORKS (benefits) ============ -->
-      <section class="screen screen--quiz" data-screen="benefits">
-        <div class="screen__body">
-          <header class="qhead">
-            <h2 class="qhead__title">Why walking works 🚶‍♀️</h2>
-            <p class="qhead__sub">Gentle on your body, backed by science — and easy to stick with.</p>
-          </header>
-          <ul class="benefits">
-            <li class="benefit">
-              <img class="benefit__icon" src="assets/img/illu/illu-heart.png" alt="" />
-              <span class="benefit__text">
-                <span class="benefit__title">A stronger heart</span>
-                <span class="benefit__sub">Lower blood pressure &amp; resting heart rate.</span>
-              </span>
-            </li>
-            <li class="benefit">
-              <img class="benefit__icon" src="assets/img/illu/illu-tree.png" alt="" />
-              <span class="benefit__text">
-                <span class="benefit__title">A longer, healthier life</span>
-                <span class="benefit__sub">Just 30 min a day adds up over time.</span>
-              </span>
-            </li>
-            <li class="benefit">
-              <img class="benefit__icon" src="assets/img/illu/illu-moon.png" alt="" />
-              <span class="benefit__text">
-                <span class="benefit__title">Better sleep</span>
-                <span class="benefit__sub">Fall asleep faster and wake up rested.</span>
-              </span>
-            </li>
-            <li class="benefit">
-              <img class="benefit__icon" src="assets/img/illu/illu-smile.png" alt="" />
-              <span class="benefit__text">
-                <span class="benefit__title">A calmer, brighter mood</span>
-                <span class="benefit__sub">Lower stress and steadier energy all day.</span>
-              </span>
-            </li>
-          </ul>
-        </div>
-        <div class="screen__foot">
-          <button class="btn btn--primary btn--block" data-next>Let's build my plan</button>
         </div>
       </section>
 
@@ -457,20 +493,47 @@
 
       <!-- ===================== SCREEN 13 — BUILDING PLAN (loader) ===================== -->
       <section class="screen screen--center" data-screen="loader" data-no-topbar>
-        <div class="loader">
-          <div class="loader__ring">
-            <svg viewBox="0 0 120 120" width="120" height="120" aria-hidden="true">
-              <circle class="loader__track" cx="60" cy="60" r="52" />
-              <circle class="loader__bar" id="loaderBar" cx="60" cy="60" r="52" />
-            </svg>
-            <span class="loader__pct" id="loaderPct">0%</span>
+        <div class="calc">
+          <h2 class="calc__title">Analyzing your answers…</h2>
+          <div class="calc__list" id="calcList">
+            <div class="calc-row">
+              <div class="calc-row__top">
+                <span class="calc-row__label">Your profile</span>
+                <span class="calc-row__pct">0%</span>
+              </div>
+              <div class="calc-bar"><div class="calc-bar__fill"></div></div>
+            </div>
+            <div class="calc-row">
+              <div class="calc-row__top">
+                <span class="calc-row__label">Activity level</span>
+                <span class="calc-row__pct">0%</span>
+              </div>
+              <div class="calc-bar"><div class="calc-bar__fill"></div></div>
+            </div>
+            <div class="calc-row">
+              <div class="calc-row__top">
+                <span class="calc-row__label">Lifestyle &amp; habits</span>
+                <span class="calc-row__pct">0%</span>
+              </div>
+              <div class="calc-bar"><div class="calc-bar__fill"></div></div>
+            </div>
+            <div class="calc-row">
+              <div class="calc-row__top">
+                <span class="calc-row__label">Your walking plan</span>
+                <span class="calc-row__pct">0%</span>
+              </div>
+              <div class="calc-bar"><div class="calc-bar__fill"></div></div>
+            </div>
           </div>
-          <h2 class="loader__title">Building your plan…</h2>
-          <p class="loader__msg" id="loaderMsg">Analyzing your answers</p>
-          <div class="quote quote--compact">
-            <span class="stars" aria-hidden="true">★★★★★</span>
-            <p>“Easiest plan I've ever stuck to. 🩷”</p>
-            <span class="quote__by">— Mia, 41</span>
+
+          <div class="calc__badge">
+            <img class="calc__laurel" src="assets/img/prepaywall/laurel.png" alt="" />
+            <div class="calc__badge-mid">
+              <span class="calc__badge-stars" aria-hidden="true">★★★★★</span>
+              <span class="calc__badge-title">LOVED WORLDWIDE</span>
+              <span class="calc__badge-sub">4.8 rating · 160+ countries</span>
+            </div>
+            <img class="calc__laurel calc__laurel--flip" src="assets/img/prepaywall/laurel.png" alt="" />
           </div>
         </div>
       </section>
@@ -515,34 +578,23 @@
       <!-- ============ SCREEN 14.5 — PRE-PAYWALL (sales scroll) ============ -->
       <section class="screen" data-screen="prepaywall" data-no-topbar>
         <div class="screen__body pp">
-          <h2 class="pp__title">Say goodbye to <span class="pink">cortisol face</span></h2>
+          <div class="pp__hook">
+            <span class="pp__eyebrow">★ REAL RESULTS FROM REAL WOMEN</span>
+            <h2 class="pp__title">Say goodbye to <span class="pink">cortisol face</span></h2>
+            <p class="pp__hooksub">It's not just the weight — it's the bloating, the stress,
+              the exhaustion. Daily walks melt it all away. This could be you&nbsp;👇</p>
+          </div>
+
+          <video class="pp__video" autoplay muted loop playsinline webkit-playsinline="true"
+                 preload="auto" poster="assets/img/prepaywall/before-after.jpg">
+            <source src="assets/video/pp-cortisol.mp4" type="video/mp4" />
+          </video>
 
           <div class="pp__ba">
             <img src="assets/img/prepaywall/before-after.jpg" alt="Before and after transformation" />
             <span class="pp__ba-tag pp__ba-tag--l">BEFORE</span>
             <span class="pp__ba-tag pp__ba-tag--r">AFTER</span>
           </div>
-
-          <ul class="pp__features">
-            <li><span>📉</span> Reduce cortisol spikes</li>
-            <li><span>🧠</span> Feel calm and clear-headed</li>
-            <li><span>🔥</span> Finally burn fat</li>
-          </ul>
-
-          <ul class="benefits pp__benefits">
-            <li class="benefit">
-              <img class="benefit__icon" src="assets/img/illu/illu-tree.png" alt="" />
-              <span class="benefit__text"><span class="benefit__title">Feel more confident</span></span>
-            </li>
-            <li class="benefit">
-              <img class="benefit__icon" src="assets/img/illu/illu-heart.png" alt="" />
-              <span class="benefit__text"><span class="benefit__title">Clear your head daily</span></span>
-            </li>
-            <li class="benefit">
-              <img class="benefit__icon" src="assets/img/illu/illu-moon.png" alt="" />
-              <span class="benefit__text"><span class="benefit__title">Improve your sleep</span></span>
-            </li>
-          </ul>
 
           <h3 class="pp__h">Why walking <span class="pink">hits different</span></h3>
           <div class="card pp__cortisol">
@@ -584,11 +636,6 @@
             <img class="pp__laurel pp__laurel--flip" src="assets/img/prepaywall/laurel.png" alt="" />
           </div>
 
-          <ul class="pp__bullets">
-            <li><img src="assets/img/illu/illu-happy.png" alt="" /> Feedback from 200,000 women</li>
-            <li><img src="assets/img/illu/illu-moon.png" alt="" /> New weekly content tailored for you</li>
-            <li><img src="assets/img/illu/illu-smile.png" alt="" /> Improving with your feedback &amp; research</li>
-          </ul>
 
           <div class="pp__reviews">
             <div class="rev">
@@ -619,8 +666,8 @@
     </main>
   </div>
 
-  <script src="config.js"></script>
-  <script src="analytics.js"></script>
-  <script src="app.js"></script>
+  <script src="config.js?v=4"></script>
+  <script src="analytics.js?v=4"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>
