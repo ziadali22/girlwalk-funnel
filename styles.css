@@ -764,7 +764,7 @@ body {
 .bmi__tag { font-weight: 700; font-size: 13px; color: var(--pink-dark); }
 
 /* ---------------- Loader / calculating screen ---------------- */
-.calc { width: 100%; }
+.calc { width: 100%; padding: 20px var(--pad) 24px; }
 .calc__title {
   font-size: clamp(24px, 6.5vw, 30px);
   font-weight: 800; letter-spacing: -0.4px;
